@@ -76,6 +76,12 @@ return require('packer').startup(function(use)
       branch = 'v2' -- optional but strongly recommended
     }
 
+    -- Status line
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
     if packer_bootstrap then
       require('packer').sync()
     end
