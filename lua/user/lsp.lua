@@ -4,7 +4,6 @@ local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -54,3 +53,11 @@ lspconfig.hls.setup{
   flags = lsp_flags,
   capabilities = capabilities
 }
+
+-- lsp_lines
+-- Disable virtual_text since it's redundant due to lsp_lines.
+vim.diagnostic.config({
+  virtual_text = false,
+  virtual_lines = false
+})
+vim.keymap.set( "", "<Leader>sd", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })

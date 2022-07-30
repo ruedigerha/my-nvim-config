@@ -17,6 +17,12 @@ return require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'RRethy/vim-illuminate'
+    use({
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup()
+      end,
+    })
 
     -- Treesitter
     use {
@@ -33,6 +39,22 @@ return require('packer').startup(function(use)
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'LinArcX/telescope-env.nvim'
     use 'nvim-telescope/telescope-ui-select.nvim'
+
+    -- Neo-Tree
+    use {
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+    }
+    use {
+      "mrbjarksen/neo-tree-diagnostics.nvim",
+      requires = "nvim-neo-tree/neo-tree.nvim",
+      module = "neo-tree.sources.diagnostics",
+    }
 
     -- git
     use 'lewis6991/gitsigns.nvim'
